@@ -17,7 +17,7 @@ async def startup_event():
 
 
 app.mount("/service", get_admin_app(), name="service")
-app.mount("/static", StaticFiles(directory="ui/static"), name="static")
+#app.mount("/static", StaticFiles(directory="ui/static"), name="static")
 
 app.openapi = lambda: custom_openapi(app)
 
