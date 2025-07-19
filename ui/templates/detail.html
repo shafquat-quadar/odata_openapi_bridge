@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Details</title>
+</head>
+<body>
+    <h1>Service {{ service.id }}</h1>
+    <p>URL: {{ service.service_url }}</p>
+    <p>Active: {{ 'Yes' if service.active else 'No' }}</p>
+    <a href="/service">Back to list</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Service</title>
+</head>
+<body>
+    <h1>Add OData Service</h1>
+    {% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+    <form action="/service/add" method="post">
+        <label for="service_url">Service URL:</label>
+        <input type="text" id="service_url" name="service_url" value="{{ service_url or '' }}" />
+        <button type="submit">Add</button>
+    </form>
+    <a href="/service">Back to list</a>
+</body>
+</html>
