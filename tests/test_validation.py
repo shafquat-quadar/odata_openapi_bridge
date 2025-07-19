@@ -27,3 +27,23 @@ def test_http_url_rejected():
     response = client.post("/service/add", data={"service_url": "http://example.com"})
     assert response.status_code == 200
     assert "Service URL must use HTTPS" in response.text
+
+
+@pytest.mark.asyncio
+async def test_fetch_metadata_uses_basic_auth(monkeypatch):
+    import metadata_parser
+    class DummyResp:
+        text = "<edmx></edmx>"
+        def raise_for_status(self):
+            pass
+
+    async def fake_get(self, url, auth=None):
+        fake_get.called_auth = auth
+        return DummyResp()
+
+    monkeypatch.setattr(metadata_parser, "load_dotenv", lambda: None)
+    monkeypatch.setattr("httpx.AsyncClient.get", fake_get, raising=False)
+    monkeypatch.setenv("SAP_USERNAME", "user")
+    monkeypatch.setenv("SAP_PASSWORD", "pass")
+    await metadata_parser.fetch_metadata("https://example.com/odata")
+    assert fake_get.called_auth == ("user", "pass")

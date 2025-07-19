@@ -16,8 +16,18 @@ Run the tests:
 pytest -q
 ```
 
+Create a `.env` file in the project root with your SAP credentials:
+
+```env
+SAP_USERNAME=<username>
+SAP_PASSWORD=<password>
+```
+
 Start the app locally:
 
 ```bash
 python main.py
 ```
+
+Open http://localhost:8000/service to access the admin UI.
+Use `python admin/ingest_metadata.py --url <service-url>` to ingest a service manually.

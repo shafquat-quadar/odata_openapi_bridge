@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Service Details</title>
-</head>
-<body>
-    <h1>Service {{ service.id }}</h1>
-    <p>URL: {{ service.service_url }}</p>
-    <p>Active: {{ 'Yes' if service.active else 'No' }}</p>
-    <a href="/service">Back to list</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Service {{ service.id }}{% endblock %}
+{% block content %}
+<h2>Service {{ service.id }}</h2>
+<p><strong>URL:</strong> {{ service.service_url }}</p>
+<p><strong>Active:</strong> {{ 'Yes' if service.active else 'No' }}</p>
+<a class="btn" href="/service">Back to list</a>
+{% endblock %}
