@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add Service{% endblock %}
+{% block content %}
+<h2>Add OData Service</h2>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form action="/service/add" method="post">
+    <label for="service_url">Service URL:</label>
+    <input type="text" id="service_url" name="service_url" value="{{ service_url or '' }}" />
+    <button class="btn" type="submit">Add</button>
+</form>
+<a class="btn" href="/service">Back to list</a>
+{% endblock %}
