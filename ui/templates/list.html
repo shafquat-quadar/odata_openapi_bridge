@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services</title>
+</head>
+<body>
+    <h1>OData Services</h1>
+    <a href="/service/add">Add Service</a>
+    <table border="1">
+        <tr><th>ID</th><th>URL</th><th>Active</th><th>Actions</th></tr>
+        {% for svc in services %}
+        <tr>
+            <td>{{ svc.id }}</td>
+            <td>{{ svc.service_url }}</td>
+            <td>{{ 'Yes' if svc.active else 'No' }}</td>
+            <td>
+                <form action="/service/{{ svc.id }}/toggle" method="post" style="display:inline;">
+                    <button type="submit">Toggle</button>
+                </form>
+                <form action="/service/{{ svc.id }}/refresh" method="post" style="display:inline;">
+                    <button type="submit">Refresh</button>
+                </form>
+                <form action="/service/{{ svc.id }}/delete" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
